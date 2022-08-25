@@ -17,7 +17,7 @@ import utils
 TOKEN = open('yatoken.txt').read().strip()
 
 API_HOST = 'https://api-metrika.yandex.ru'
-COUNTER_ID = 25412549
+COUNTER_ID = 256789
 
 
 START_DATE = '' # '2022-08-23'
