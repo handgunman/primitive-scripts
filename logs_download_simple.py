@@ -1,4 +1,4 @@
-#Loading API metrics logs
+#Loading Yandex Metrica logs
 # -*- coding: utf-8 -*-
 import requests
 import pandas as pd
