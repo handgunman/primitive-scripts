@@ -17,5 +17,6 @@ If necessary, specify the path to the certificate file in the SSL_VERIFY variabl
 
 Loading mode 1 leads to deletion and creation of tables under the data. Mode 0 adds data to existing tables. When loading for the first time it is recommended to use mode 1 for automatic creation of tables.
 
+The script does not check the availability of the database, the availability of the necessary tables and data for the same period.
 
-The scripts can be combined with the exception of writing to the file.
+The scripts can be combined with the exception of writing to the file
