@@ -147,10 +147,7 @@ visits_df['Revenue'] = visits_df['Purchase.Revenue'].map(lambda x: sum(map(float
 # Dropp fields example
 visits_df.drop(columns=['Purchase.ID','Purchase.Revenue'], inplace=True)
 
-
-
 q = {'query': 'INSERT INTO visits_test FORMAT TabSeparatedWithNames'}
-
 
 r = requests.post(CH_HOST, data=visits_df.to_csv(index = False, sep = '\t').encode('utf-8'), params=q, 
                           auth=(CH_USER, CH_PASS), verify=SSL_VERIFY)
@@ -159,8 +156,3 @@ if r.status_code == 200:
     print(f'Visits uploaded')
 else:
     raise ValueError(r.text)
-
-
-
-
- 
