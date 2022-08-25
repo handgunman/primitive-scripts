@@ -10,7 +10,7 @@ import pandas as pd
 
 print('UpLoad data to ch ***')
 
-REPLACE_DATA = 0 # replace 1, add 0
+REPLACE_DATA = 0 # replace 1, add 0, Use 1 if you have changed the list of fields and are loading the data again
 
 CH_HOST_NAME = 'localhost'
 CH_USER      = 'default'
