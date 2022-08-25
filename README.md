@@ -11,5 +11,11 @@ Use the logs_upload_simple.py script to upload data from files to clickhouse.
 
 ```python3 logs_upload_simple.py```
 
+The connection parameters and data loading mode are specified directly in the script.
+
+If necessary, specify the path to the certificate file in the SSL_VERIFY variable.
+
+Loading mode 1 leads to deletion and creation of tables under the data. Mode 0 adds data to existing tables. When loading for the first time it is recommended to use mode 1 for automatic creation of tables.
+
 
 The scripts can be combined with the exception of writing to the file.
