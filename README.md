@@ -19,4 +19,4 @@ Loading mode 1 leads to deletion and creation of tables under the data. Mode 0 a
 
 The script does not check the availability of the database, the availability of the necessary tables and data for the same period.
 
-The scripts can be combined with the exception of writing to the file
+Scripts can be merged, together with the exclusion of writing to a file
