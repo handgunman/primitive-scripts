@@ -3,7 +3,7 @@
 import requests
 import pandas as pd
 from io import StringIO
-import datetime
+from datetime import timedelta, date
 import json
 from urllib.parse import urlencode
 import time
@@ -24,10 +24,9 @@ START_DATE = '' # '2022-08-23'
 END_DATE = '' # '2022-08-24'
 
 if START_DATE == '':
-    sd = (datetime.datetime.today() - datetime.timedelta(1)) \
-                .strftime(utils.DATE_FORMAT)
-    ed = (datetime.datetime.today() - datetime.timedelta(1)) \
-                .strftime(utils.DATE_FORMAT)
+    date = date.today()
+    sd = date-timedelta(days=1)
+    ed = date-timedelta(days=1)
 else:
     sd = START_DATE
     ed = END_DATE
