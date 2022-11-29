@@ -119,7 +119,8 @@ SOURCE = 'visits'
 
 #https://yandex.ru/dev/metrika/doc/api2/logs/fields/visits.html
 API_FIELDS = ('ym:s:date', 'ym:s:dateTime', 'ym:s:startURL', 'ym:s:deviceCategory', 
-         'ym:s:operatingSystemRoot', 'ym:s:clientID', 'ym:s:browser', 'ym:s:lastTrafficSource', 'ym:s:purchaseRevenue', 'ym:s:purchaseID')
+         'ym:s:operatingSystemRoot', 'ym:s:clientID', 'ym:s:browser', 'ym:s:lastTrafficSource', 'ym:s:purchaseRevenue',
+         'ym:s:purchaseID','ym:s:purchaseDateTime','ym:s:impressionsProductID','ym:s:impressionsProductName','ym:s:impressionsDateTime')
 
 url_params = urlencode(
     [
