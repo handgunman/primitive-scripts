@@ -26,3 +26,6 @@ Scripts can be merged, together with the exclusion of writing to a file
 You can use the logs_upload_psql_simple.py script to upload to PostgreSQL instead of the ClickHouse script
 
 When directly transferring uploaded metric data to the database, special character escaping must be taken into account
+
+a description of the Metric data can be found at:
+https://yandex.ru/dev/metrika/doc/api2/logs/intro.html
