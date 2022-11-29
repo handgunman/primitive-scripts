@@ -76,6 +76,11 @@ hits_df.rename(columns={'ym:pv:browser':'Browser',
                 'ym:pv:operatingSystemRoot':'OSRoot',
                 'ym:pv:URL':'URL'}, inplace = True)
 
+hits_df = hits_df.replace("\[\\\\'","['",regex=True)
+hits_df = hits_df.replace("\\\\'\]","']",regex=True)
+hits_df = hits_df.replace("\\\\'\,","',",regex=True)
+hits_df = hits_df.replace("\,\\\\'",",'",regex=True)
+
 q = {'query': 'INSERT INTO hits_test FORMAT TabSeparatedWithNames'}
 
 
@@ -116,8 +121,9 @@ create table IF NOT EXISTS {CH_DB_NAME}.visits_test (
     OSRoot String,
     Purchases Int32,
     Revenue Double,
+    PurchaseDateTime Array(DateTime),
     StartURL String
-) ENGINE = MergeTree(StartDate, intHash32(ClientID), (StartDate, intHash32(ClientID)), 8192)
+) ENGINE = MergeTree() ORDER BY (StartDate, intHash32(ClientID), (StartDate, intHash32(ClientID)))
 '''
 
 r = requests.post(CH_HOST, data=q, auth=(CH_USER, CH_PASS), verify=SSL_VERIFY)
@@ -137,6 +143,7 @@ visits_df.rename(columns={'ym:s:browser':'Browser',
                 'ym:s:lastTrafficSource':'TraficSource',
                 'ym:s:operatingSystemRoot':'OSRoot',
                 'ym:s:purchaseRevenue': 'Purchase.Revenue', 
+		'ym:s:purchaseDateTime':'PurchaseDateTime',
                 'ym:s:purchaseID': 'Purchase.ID',
                 'ym:s:startURL':'StartURL'}, inplace = True)
 
@@ -147,7 +154,13 @@ visits_df['Revenue'] = visits_df['Purchase.Revenue'].map(lambda x: sum(map(float
 # Dropp fields example
 visits_df.drop(columns=['Purchase.ID','Purchase.Revenue'], inplace=True)
 
+visits_df = visits_df.replace("\[\\\\'","['",regex=True)
+visits_df = visits_df.replace("\\\\'\]","']",regex=True)
+visits_df = visits_df.replace("\\\\'\,","',",regex=True)
+visits_df = visits_df.replace("\,\\\\'",",'",regex=True)
+
 q = {'query': 'INSERT INTO visits_test FORMAT TabSeparatedWithNames'}
+
 
 r = requests.post(CH_HOST, data=visits_df.to_csv(index = False, sep = '\t').encode('utf-8'), params=q, 
                           auth=(CH_USER, CH_PASS), verify=SSL_VERIFY)
@@ -156,3 +169,4 @@ if r.status_code == 200:
     print(f'Visits uploaded')
 else:
     raise ValueError(r.text)
+    
