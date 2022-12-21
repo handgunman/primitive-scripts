@@ -55,7 +55,7 @@ create table IF NOT EXISTS {CH_DB_NAME}.hits_test (
     TraficSource String,
     OSRoot String,
     URL String
-) ENGINE = MergeTree(EventDate, intHash32(ClientID), (EventDate, intHash32(ClientID)), 8192)
+) ENGINE = MergeTree() GROUP BY (EventDate, intHash32(ClientID), (EventDate, intHash32(ClientID)))
 '''
 
 r = requests.post(CH_HOST, data=q, auth=(CH_USER, CH_PASS), verify=SSL_VERIFY)
