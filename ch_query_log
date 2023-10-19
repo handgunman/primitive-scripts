@@ -30,4 +30,17 @@ GROUP BY
         ())
 ORDER BY UserTime DESC
 LIMIT 30
-SETTINGS group_by_use_nulls = 1
+SETTINGS group_by_use_nulls = 1 Format Vertical;
+
+
+select query_id, q, start_t, end_t
+(select
+     query_id,
+     any(query) q,
+     anyIf(event_time, type=1) start_t,
+     anyIf(event_time, type!=1) end_t,
+from system.query_log
+where event_date between '2021-09-24' and '2021-09-25'
+group by query_id )
+where start_t <= '2021-09-24 09:00:00' and 
+      end_t >= '2021-09-24 07:00:00';
