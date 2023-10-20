@@ -3,6 +3,7 @@
 SELECT
     normalized_query_hash,
     replace(substr(argMax(query, utime), 1, 80), '\n', ' ') AS query,
+    any(type) AS tp,
     count() AS cnt,
     sum(query_duration_ms) / 1000 AS QueriesDuration,
     sum(ProfileEvents.Values[indexOf(ProfileEvents.Names, 'RealTimeMicroseconds')]) / 1000000 AS RealTime,
