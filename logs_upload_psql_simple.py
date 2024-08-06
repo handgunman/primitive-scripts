@@ -23,7 +23,7 @@ PG_SSL       = 'disable' # 'verify-full'
 
 
 #The files are created by the script logs_download_simple.py
-hits_df = pd.read_csv('metrika_hits.csv', sep = '\t')
+#hits_df = pd.read_csv('metrika_hits.csv', sep = '\t')
 visits_df = pd.read_csv('metrika_visits.csv', sep = '\t')
 
 
